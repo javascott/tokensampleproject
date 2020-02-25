@@ -45,7 +45,7 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public CountResponse tokenUsed(String token, String path) {
+    public CountResponse tokenUsed(String token, String path) throws ErrorException {
         Tokens tokens = getTokensRepository().getTokenByTokenId(token);
         if (tokens != null) {
             Used used = new Used();
@@ -55,7 +55,7 @@ public class TokenServiceImpl implements TokenService {
             int count = getUsedRepository().getPathCount(path);
             return new CountResponse(count);
         } else {
-            return new CountResponse(0);
+            throw new ErrorException("Invalid Token");
         }
     }
 

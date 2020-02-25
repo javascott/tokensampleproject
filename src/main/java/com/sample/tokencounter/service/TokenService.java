@@ -8,6 +8,6 @@ public interface TokenService {
 
     public TokenResponse createToken();
 
-    public CountResponse tokenUsed(String token, String path);
+    public CountResponse tokenUsed(String token, String path) throws ErrorException;
 
 }
