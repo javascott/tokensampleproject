@@ -1,10 +1,10 @@
-package com.sample.tokencounter.controller.dao.models;
+package com.sample.tokencounter.dao.models;
 
 import java.util.Date;
 
 public class Used {
     private int usedId;
-    private int tokenId;
+    private String path;
     private Date usedDate;
 
     public int getUsedId() {
@@ -15,12 +15,12 @@ public class Used {
         this.usedId = usedId;
     }
 
-    public int getTokenId() {
-        return tokenId;
+    public String getPath() {
+        return path;
     }
 
-    public void setTokenId(int tokenId) {
-        this.tokenId = tokenId;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public Date getUsedDate() {

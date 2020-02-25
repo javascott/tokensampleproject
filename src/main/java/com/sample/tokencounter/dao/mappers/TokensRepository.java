@@ -1,6 +1,6 @@
-package com.sample.tokencounter.controller.dao.mappers;
+package com.sample.tokencounter.dao.mappers;
 
-import com.sample.tokencounter.controller.dao.models.Tokens;
+import com.sample.tokencounter.dao.models.Tokens;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;

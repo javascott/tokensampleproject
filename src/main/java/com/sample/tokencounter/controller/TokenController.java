@@ -1,10 +1,16 @@
 package com.sample.tokencounter.controller;
 
-import com.sample.tokencounter.controller.dao.models.Tokens;
-import com.sample.tokencounter.controller.service.TokenService;
+import com.sample.tokencounter.dao.models.Tokens;
+import com.sample.tokencounter.dto.CountResponse;
+import com.sample.tokencounter.dto.TokenResponse;
+import com.sample.tokencounter.service.TokenService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @RestController
 public class TokenController {
@@ -14,21 +20,17 @@ public class TokenController {
         this.tokenService = tokenService;
     }
 
-    @RequestMapping("/index")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
-
-    @RequestMapping("/")
-    public Tokens generateToken() {
-        Tokens token = getTokenService().createToken();
+    @RequestMapping("/auth")
+    public TokenResponse generateToken() {
+        TokenResponse token = getTokenService().createToken();
         return token;
     }
 
-    @RequestMapping("/{token}")
-    public String getCount(@PathVariable String token) {
-        int count = getTokenService().tokenUsed(token);
-        return "" + count;
+    @RequestMapping("/{path}")
+    public CountResponse getCount(@PathVariable String path,
+                                  @RequestHeader("Authorization") @NotNull(message="A valid Token is required")
+                                  @NotBlank(message="A valid Token is required") String token) {
+        return getTokenService().tokenUsed(token, path);
     }
 
     public TokenService getTokenService() {

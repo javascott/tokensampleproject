@@ -1,4 +1,4 @@
-package com.sample.tokencounter.controller.dao.models;
+package com.sample.tokencounter.dao.models;
 
 import java.util.Date;
 

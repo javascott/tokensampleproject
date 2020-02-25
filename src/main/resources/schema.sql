@@ -9,8 +9,7 @@ create table token (
 
 create table used (
     usedId int not null auto_increment,
-    tokenId int not null,
+    path varchar(512) not null,
     usedDate datetime,
-    PRIMARY KEY (usedId),
-    FOREIGN KEY (tokenId) references token(tokenId)
+    PRIMARY KEY (usedId)
 );
